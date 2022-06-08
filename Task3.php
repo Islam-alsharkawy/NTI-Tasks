@@ -1,42 +1,48 @@
 <?php
 /* task 1
-	Write a function that takes a two-dimensional array and returns a one-dimensional array containing the unique values of each array (Without using the array_merge  function on PHP). 
+    Write a function that takes a two-dimensional array and returns a one-dimensional array containing the unique values of each array (Without using the array_merge  function on PHP). 
 
- 	I.e. input will be:
- 	[  
- 		0 => [0=>’a’ , 1=>’b’ ,  2=>’c’ ] ,
-    	1 => [0=>’x’ , 1=>’b’ , 2=>’a’],
-    	2 => [0=>’z’ , 1=>’z’ , 2=>’v’]
-  	]
+    I.e. input will be:
+    [  
+        0 => [0=>’a’ , 1=>’b’ ,  2=>’c’ ] ,
+        1 => [0=>’x’ , 1=>’b’ , 2=>’a’],
+        2 => [0=>’z’ , 1=>’z’ , 2=>’v’]
+    ]
 
  Output should be:
  [a,b,c,x,z,v]
 */
 
-	$array = 
-	[
-	  	0 => [0=>"a" , 1=>"b" , 2=>"c"],
-   		1 => [0=>"x" , 1=>"b" , 2=>"a"],
-   		2 => [0=>"z" , 1=>"z" , 2=>"v"]
- 	];
- 	
- 	for ($i=0; $i < 3; $i++) { 
- 		$newArr = array_column($array, $i);
- 		// array_unique($newArr);
- 		 print_r($newArr);
- 	}
- 	
- 	//var_dump($newArr);
- 	echo "<hr>";
+    $array = 
+    [
+        0 => [0=>"a" , 1=>"b" , 2=>"c"],
+        1 => [0=>"x" , 1=>"b" , 2=>"a"],
+        2 => [0=>"z" , 1=>"z" , 2=>"v"]
+    ];
+
+    $result = [];
+
+    foreach ($array as $key => $value) {
+
+        foreach ($value as $supkey => $supvalue) {
+
+            if(!in_array($supvalue, $result))
+                $result[] = $supvalue;
+        }
+    }
+    
+    
+    print_r($result);
+    echo "<hr>";
 
 /* task 2
-	Create a form with the following inputs (name, email, linkedin url) Validate inputs then return message to user . 
-  	validation rules ... 
- 	name  = [required , string (Accept only letters) , min length 3 , max length 20]
- 	email = [required]
- 	linkedin url = [required | linked Url]
- 	Notes … 
- 	Don’t use html || js || php filters || regx  To validate inputs. 
+    Create a form with the following inputs (name, email, linkedin url) Validate inputs then return message to user . 
+    validation rules ... 
+    name  = [required , string (Accept only letters) , min length 3 , max length 20]
+    email = [required]
+    linkedin url = [required | linked Url]
+    Notes … 
+    Don’t use html || js || php filters || regx  To validate inputs. 
 */
 ?>
 <!DOCTYPE html>
