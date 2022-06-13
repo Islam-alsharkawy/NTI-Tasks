@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$fileMame = uniqid().time().".".$extention;
 
 			$file2 = fopen("taskInfo.txt", "a") or die("Unable to open file"); 
-			$text2 = "id:".time().rand()."||"."image:".$fileMame."||";
+			$text2 = time().rand()."||".$fileMame."||";
 			fwrite($file2, $text2);
 			fclose($file2);
 
