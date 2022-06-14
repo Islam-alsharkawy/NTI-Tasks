@@ -8,7 +8,7 @@ Validate inputs , then store data in DB. -->
 <?php 
   require 'dbConnection.php';
 
- $sql = "select id,title,content from articles";
+ $sql = "select id,title,content,image from articles";
 
  $resultObj = mysqli_query($con, $sql);
 
@@ -86,7 +86,7 @@ Validate inputs , then store data in DB. -->
                 <td><?php  echo $raw['id'];  ?></td>
                 <td><?php  echo $raw['title'];  ?></td>
                 <td><?php  echo $raw['content'];  ?></td>
-                <td><?php  echo $raw['image'];  ?></td>
+                <td><img src="./uploads/<?php echo $raw['image'];?>" width="50px" height="50px"></td>
                 <td>
                     <a href='delete.php?id=<?php  echo $raw['id'];  ?>' class='btn btn-danger m-r-1em'>Delete</a>
                     <a href='edit.php?id=<?php  echo $raw['id'];  ?>' class='btn btn-primary m-r-1em'>Edit</a>

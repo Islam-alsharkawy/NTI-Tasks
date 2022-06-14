@@ -66,8 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     } else {
 
+        $filename = uniqid().time().".".$extension;
+        $dispath = "uploads/".$filename;
+        $tempname = $_FILES['image']['tmp_name'];
+        if (move_uploaded_file($tempname,$dispath)) {
 
-        $sql = "INSERT INTO `articles` (`title`, `content`) VALUES ('$title', '$content')";
+            $sql = "INSERT INTO `articles` (`title`, `content`, `image`) VALUES ('$title', '$content', '$filename')";
 
 
         $op =  mysqli_query($con, $sql);
@@ -77,6 +81,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         } else {
             echo "Failed , " . mysqli_error($con);
         }
+            
+        }else{
+            echo "error in uploading image";
+        }
+        
     }
 }
 
