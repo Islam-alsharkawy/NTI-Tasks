@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             <div class="form-group">
                 <label for="exampleInputNumber">obj number</label>
-                <input type="number" class="form-control"  id="exampleInputNumber" aria-describedby="" name="num" min="0" max="30">
+                <input type="number" class="form-control"  id="exampleInputNumber" aria-describedby="" name="num" min="0" max="29">
             </div>
 
         

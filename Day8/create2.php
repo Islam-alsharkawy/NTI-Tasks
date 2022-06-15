@@ -17,6 +17,9 @@ function Clean($input)
 # Server Side Code . . . 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
+    $num            = $_POST['num'];
+    if(empty($num)){
+
     $project        = Clean($_POST['project']);
     $article        = Clean($_POST['article']);
     $granularity    = Clean($_POST['granularity']);
@@ -81,10 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     } else {
 
-        // DB cODE . . . 
-
-    $password = md5($password);
-            //   sha1()
+           
             $sql = "insert into api (project,article,granularity,timestamp,access,agent,views) values
                                     ('$project','$article','$granularity','$timestamp','$access','$agent','$views')";
                                     
@@ -96,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 echo "Failed , " . mysqli_error($con);
             }
+    }
     }
 }
 
