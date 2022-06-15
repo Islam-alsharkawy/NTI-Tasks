@@ -6,7 +6,7 @@ require 'dbConnection.php';
 ##################################################################################################################
  
 $id = $_GET['id'];
-$sql = "select id,title,content from articles where id =".$id;
+$sql = "select id,title,content,image from articles where id =".$id;
 $resultObj = mysqli_query($con, $sql);
 $data = mysqli_fetch_assoc($resultObj);
 
@@ -50,9 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     // image
-    if (empty($_FILES['image']['name'])) {
-        $errors['image'] = "Field Required";
-    } else {
+    if (!empty($_FILES['image']['name'])) {
+       
 
         # Validate Extension . . . 
         $imageType = $_FILES['image']['type'];
@@ -78,9 +77,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     } else {
 
-        // DB cODE . . . 
 
-        $sql = "UPDATE `articles` SET `title` = '$title', `content` = '$content' WHERE `articles`.`id` = $id";
+        // DB cODE . . . 
+        if (!empty($_FILES['image']['name'])){
+
+        $filename = uniqid().time().".".$extension;
+        $dispath = "uploads/".$filename;
+        $tempname = $_FILES['image']['tmp_name'];
+        if (move_uploaded_file($tempname,$dispath)) {
+                unlink('uploads/',$data['image']);
+        }
+    }else{
+        $filename = $data['image'];
+    }
+
+        $sql = "UPDATE `articles` SET `title` = '$title', `content` = '$content' , `image` = '$filename' WHERE `articles`.`id` = $id";
 
         $op =  mysqli_query($con, $sql);
 
@@ -136,6 +147,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <label for="exampleInputPassword">Image</label>
                 <input type="file" name="image">
             </div>
+
+            <p>
+                <img src="./uploads/<?php echo $data['image'];?>" width="50px" height="50px">
+            </p>
 
 
             <button type="submit" class="btn btn-primary">Save</button>

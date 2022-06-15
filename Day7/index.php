@@ -72,8 +72,8 @@ Validate inputs , then store data in DB. -->
             <!-- creating our table heading -->
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>title</th>
+                <th>content</th>
                 <th>Image</th>
                 <th>action</th>
             </tr>
