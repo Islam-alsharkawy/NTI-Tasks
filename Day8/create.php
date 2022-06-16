@@ -3,41 +3,7 @@
 require 'dbConnection.php';
 
 
-# Clean Function to sanitize the data
-function Clean($input)
-{
-    return stripslashes(strip_tags(trim($input)));
-}
 
-
-
-# Server Side Code . . . 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-
-    $num            = Clean($_POST['num']);
-
-    # Validate ...... 
-    $errors = [];
-
-    # validate project .... 
-    if (empty($num)) {
-        $errors['num'] = "Field Required";
-    }
-
-
-
-    # Check ...... 
-    if (count($errors) > 0) {
-        // print errors .... 
-
-        foreach ($errors as $key => $value) {
-            # code...
-
-            echo '* ' . $key . ' : ' . $value . '<br>';
-        }
-    }
-}
 ?>
 
 
@@ -56,13 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
 
     <div class="container">
-        <h2>api data</h2>
+        <h2>API data</h2>
 
         <form action="create2.php" method="post" >
 
             <div class="form-group">
-                <label for="exampleInputNumber">obj number</label>
-                <input type="number" class="form-control"  id="exampleInputNumber" aria-describedby="" name="num" min="0" max="29">
+                <label for="exampleInputNumber">Select hte number of the object number</label>
+                <input type="number" class="form-control"  id="exampleInputNumber" aria-describedby="" name="num" min="0" max="29" required>
             </div>
 
         

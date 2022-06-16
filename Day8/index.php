@@ -1,10 +1,3 @@
-<!-- # Task
-Build a Blog Module  (CRUD) with following data  
-Title   =  [required , string]
-Content =  [required,length >50 ch]
-Image   =  [required, file]
-Validate inputs , then store data in DB. -->
-
 <?php 
   require 'dbConnection.php';
   require 'checklogin.php';

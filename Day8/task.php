@@ -25,10 +25,3 @@ get the data from the api and validate the data and do crud
 
 
  -->
-<?php
- $link = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/Tiger_King/daily/20210901/20210930";
-    $jsonOBJ = file_get_contents($link);
-    $data = json_decode($jsonOBJ,true);
-    //print_r($dat);
-    echo
-    $data['items'][0]['project'];
